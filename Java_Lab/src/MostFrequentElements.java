@@ -9,7 +9,7 @@ public class MostFrequentElements {
         Map<Integer, Integer> counts = new HashMap<>();
 
         for (int i: sequence
-             ) {
+                ) {
 
             if (!counts.containsKey(i)){
                 counts.put(i, 0);
@@ -22,7 +22,7 @@ public class MostFrequentElements {
         int bestKey= sequence[0];
 
         for (int num:sequence
-             ) {
+                ) {
             if (max < counts.get(num)){
                 max = counts.get(num);
                 bestKey = num;

@@ -9,13 +9,24 @@ public class CensorEmailAdress {
         String email = scan.nextLine();
         String text = scan.nextLine();
 
-        String[] parts = text.split(" ");
+        String censorMails = CensorMail(email);
+        String censora = text.replace(email, censorMails);
+
+        System.out.println(censora);
 
 
-        for (String str: parts
-             ) {
-            System.out.println(str);
+
+    }
+
+    private static String CensorMail(String email) {
+        StringBuilder sb = new StringBuilder(email.length());
+        int index = email.indexOf('@');
+
+        for (int i = 0; i < index; i++) {
+            sb.append('*');
         }
+        sb.append(email.substring(index));
 
+        return sb.toString();
     }
 }
