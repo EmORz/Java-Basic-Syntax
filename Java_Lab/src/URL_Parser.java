@@ -8,38 +8,30 @@ public class URL_Parser {
         //http://www.abc.com/video
 
         String input = scan.nextLine();
-        String[] parts = input.split("/");
-        String[] part = input.split("\\.");
-        String temporal = "";
-        String resource = "";
-        for (int i = 2; i < part.length; i++) {
-            temporal+=part[i];
-        }
-        String[] temp = temporal.split("/");
-
-        for (int i = 1; i < temp.length; i++) {
-            if (i == temp.length-1){
-                resource+=temp[i];
-            }else {
-                resource+=temp[i]+"/";
-            }
-        }
-
-        char[] ch = input.toCharArray();
-        int indexHttp = input.indexOf("://");
-        int indexServer = input.indexOf("/");
         String protocol = "";
-        for (int i = 0; i < indexHttp; i++) {
-            protocol +=ch[i];
-        }
-        System.out.printf("[protocol] = \"%s\"\n", protocol);
-        if (protocol.equals("")){
-            System.out.printf("[server] = \"%s\"\n", parts[0].trim());
+        String server = "";
+        String resource = "";
 
-        }else {
-            System.out.printf("[server] = \"%s\"\n", parts[2].trim());
+        int procolIndex = input.indexOf("://");
+
+        if (procolIndex !=-1){
+            protocol = input.substring(0, procolIndex);
+            input = input.substring(procolIndex+3);
         }
-        System.out.printf("[resource] = \"%s\"", resource.trim() );
+
+        int serverIndex = input.indexOf("/");
+
+        if (serverIndex !=-1){
+            server = input.substring(0, serverIndex);
+            resource = input.substring(serverIndex+1);
+        }else {
+            server = input;
+        }
+
+
+        System.out.printf("[protocol] = \"%s\"\n", protocol);
+        System.out.printf("[server] = \"%s\"\n", server );
+        System.out.printf("[resource] = \"%s\"\n", resource);
 
 
 
